@@ -479,8 +479,12 @@ class _FlexibleDraggableScrollableSheetScrollPosition
     // the ballistic back to the ScrollView, it will use the right simulation.
     final Simulation simulation = ClampingScrollSimulation(
       position: extent.currentExtent,
-      velocity: velocity,
-      tolerance: physics.tolerance,
+      velocity: 5,
+      // tolerance:  Tolerance(
+    // velocity: 100,
+    //     distance: 0,
+    // ),
+
     );
 
     final ballisticController = AnimationController.unbounded(
