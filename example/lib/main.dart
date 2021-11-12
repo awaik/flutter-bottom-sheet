@@ -70,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _showSheet() {
     showFlexibleBottomSheet<void>(
+      bottomSheetDuration: const Duration(milliseconds: 200),
       minHeight: 0,
       initHeight: 0.5,
       maxHeight: 1,
@@ -89,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       minHeight: 0,
       initHeight: 0.5,
       maxHeight: .8,
+      bottomSheetDuration: Duration(milliseconds: 200),
       headerHeight: 200,
       context: context,
       decoration: const BoxDecoration(

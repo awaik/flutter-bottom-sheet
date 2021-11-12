@@ -58,6 +58,7 @@ class FlexibleBottomSheet extends StatefulWidget {
   final Duration bottomSheetDuration;
 
   FlexibleBottomSheet({
+    required this.bottomSheetDuration,
     Key? key,
     this.minHeight = 0,
     this.initHeight = 0.5,
@@ -73,7 +74,6 @@ class FlexibleBottomSheet extends StatefulWidget {
     this.maxHeaderHeight,
     this.decoration,
     this.onDismiss,
-    this.bottomSheetDuration = const Duration(milliseconds: 500),
   })  : assert(minHeight >= 0 && minHeight <= 1),
         assert(maxHeight > 0 && maxHeight <= 1),
         assert(maxHeight > minHeight),
@@ -83,6 +83,7 @@ class FlexibleBottomSheet extends StatefulWidget {
         super(key: key);
 
   FlexibleBottomSheet.collapsible({
+    required Duration bottomSheetDuration,
     Key? key,
     double initHeight = 0.5,
     double maxHeight = 1,
@@ -96,6 +97,7 @@ class FlexibleBottomSheet extends StatefulWidget {
     double? maxHeaderHeight,
     Decoration? decoration,
   }) : this(
+    bottomSheetDuration: bottomSheetDuration,
           key: key,
           maxHeight: maxHeight,
           builder: builder,
@@ -192,7 +194,7 @@ class _FlexibleBottomSheetState extends State<FlexibleBottomSheet>
               controller as FlexibleDraggableScrollableSheetScrollController;
 
           return AnimatedPadding(
-            duration: const Duration(milliseconds: 100),
+            duration: const Duration(milliseconds: 10),
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),

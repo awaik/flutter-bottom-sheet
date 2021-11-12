@@ -31,6 +31,7 @@ void main() {
   );
 
   Future<void> showStickyBottomSheet({
+    required Duration bottomSheetDuration,
     double? headerHeight,
     double? maxHeaderHeight,
     double? minHeaderHeight,
@@ -39,6 +40,7 @@ void main() {
       context: savedContext,
       minHeaderHeight: minHeaderHeight,
       maxHeaderHeight: maxHeaderHeight,
+      bottomSheetDuration: bottomSheetDuration,
       headerHeight: headerHeight,
       headerBuilder: (context, offset) {
         return const SizedBox(
@@ -63,7 +65,10 @@ void main() {
     (tester) async {
       await tester.pumpWidget(app);
 
-      unawaited(showStickyBottomSheet(headerHeight: 200.0));
+      unawaited(showStickyBottomSheet(
+        headerHeight: 200.0,
+        bottomSheetDuration: const Duration(milliseconds: 200),
+      ));
 
       await tester.pumpAndSettle();
 
@@ -88,10 +93,9 @@ void main() {
         () async {
           unawaited(
             showStickyBottomSheet(
-              headerHeight:
-                  _headerHeightTestVariants.currentValue!.headerHeight,
-              maxHeaderHeight:
-                  _headerHeightTestVariants.currentValue!.maxHeaderHeight,
+              headerHeight: _headerHeightTestVariants.currentValue!.headerHeight,
+              maxHeaderHeight: _headerHeightTestVariants.currentValue!.maxHeaderHeight,
+              bottomSheetDuration: const Duration(milliseconds: 200),
             ),
           );
 

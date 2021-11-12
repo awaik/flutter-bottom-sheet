@@ -27,6 +27,7 @@ import 'package:flutter/material.dart';
 Future<T?> showFlexibleBottomSheet<T>({
   required BuildContext context,
   required FlexibleDraggableScrollableWidgetBuilder builder,
+  required Duration bottomSheetDuration,
   double? minHeight,
   double? initHeight,
   double? maxHeight,
@@ -36,7 +37,6 @@ Future<T?> showFlexibleBottomSheet<T>({
   bool useRootNavigator = false,
   bool isModal = true,
   List<double>? anchors,
-  Duration bottomSheetDuration = const Duration(milliseconds: 500),
 }) {
   assert(debugCheckHasMediaQuery(context));
   assert(debugCheckHasMaterialLocalizations(context));
@@ -54,6 +54,7 @@ Future<T?> showFlexibleBottomSheet<T>({
       builder: builder,
       isModal: isModal,
       anchors: anchors,
+      bottomSheetDuration: bottomSheetDuration,
     ),
   );
 }
@@ -79,6 +80,7 @@ Future<T?> showStickyFlexibleBottomSheet<T>({
   required BuildContext context,
   required FlexibleDraggableScrollableHeaderWidgetBuilder headerBuilder,
   required FlexibleDraggableScrollableWidgetBodyBuilder bodyBuilder,
+  required Duration bottomSheetDuration,
   double? minHeight,
   double? initHeight,
   double? maxHeight,
@@ -114,6 +116,7 @@ Future<T?> showStickyFlexibleBottomSheet<T>({
       minHeaderHeight: minHeaderHeight ?? headerHeight ?? maxHeaderHeight! / 2,
       maxHeaderHeight: maxHeaderHeight ?? headerHeight!,
       decoration: decoration,
+      bottomSheetDuration: bottomSheetDuration,
     ),
   );
 }
@@ -159,6 +162,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
     required this.isDismissible,
     required this.isExpand,
     required this.isModal,
+    required this.bottomSheetDuration,
     this.builder,
     this.headerBuilder,
     this.bodyBuilder,
@@ -168,7 +172,6 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
     this.minHeaderHeight,
     this.maxHeaderHeight,
     this.decoration,
-    this.bottomSheetDuration = const Duration(milliseconds: 500),
     RouteSettings? settings,
   }) : super(settings: settings);
 
@@ -194,6 +197,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
       removeTop: true,
       child: isCollapsible
           ? FlexibleBottomSheet.collapsible(
+        bottomSheetDuration: bottomSheetDuration,
               initHeight: initHeight,
               maxHeight: maxHeight,
               builder: builder,
@@ -207,6 +211,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
               decoration: decoration,
             )
           : FlexibleBottomSheet(
+        bottomSheetDuration: bottomSheetDuration,
               minHeight: minHeight,
               initHeight: initHeight,
               maxHeight: maxHeight,
@@ -218,7 +223,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
               anchors: anchors,
               minHeaderHeight: minHeaderHeight,
               maxHeaderHeight: maxHeaderHeight,
-              decoration: decoration,
+        decoration: decoration,
             ),
     );
 
@@ -239,7 +244,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
     const begin = Offset(0.0, 1.0);
     const end = Offset.zero;
     final curve = Curves.linear;
-    final tween = Tween(begin: begin, end: end);
+    final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
     return SlideTransition(
       position: animation.drive(tween),

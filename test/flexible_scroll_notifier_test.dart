@@ -56,7 +56,9 @@ void main() {
           result.add(_Scroll.end);
           return true;
         },
-        child: FlexibleBottomSheet(),
+        child: FlexibleBottomSheet(
+          bottomSheetDuration: const Duration(milliseconds: 200),
+        ),
       );
 
       await tester.pumpWidget(makeTestableWidget(widget));

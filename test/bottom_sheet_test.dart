@@ -38,6 +38,7 @@ void main() {
   );
 
   Future<void> showBottomSheet({
+    required Duration bottomSheetDuration,
     bool? isCollapsible,
     bool? isDismissible,
     double? minHeight,
@@ -46,6 +47,7 @@ void main() {
     List<double>? anchors,
   }) {
     return showFlexibleBottomSheet<void>(
+      bottomSheetDuration: bottomSheetDuration,
       minHeight: minHeight ?? 0,
       initHeight: initHeight ?? 0.5,
       maxHeight: maxHeight ?? 0.8,
@@ -78,7 +80,9 @@ void main() {
         (tester) async {
           await tester.pumpWidget(
             makeTestableWidget(
-              FlexibleBottomSheet(),
+              FlexibleBottomSheet(
+                bottomSheetDuration: const Duration(milliseconds: 200),
+              ),
             ),
           );
 
@@ -96,7 +100,9 @@ void main() {
       testWidgets('Tap on the BottomSheet should not close it', (tester) async {
         await tester.pumpWidget(app);
 
-        unawaited(showBottomSheet());
+        unawaited(showBottomSheet(
+          bottomSheetDuration: const Duration(milliseconds: 200),
+        ));
 
         await tester.pumpAndSettle();
         expect(find.byType(FlexibleBottomSheet), findsOneWidget);
@@ -113,6 +119,7 @@ void main() {
 
           unawaited(showBottomSheet(
             isDismissible: defaultBoolTestVariant.currentValue,
+            bottomSheetDuration: const Duration(milliseconds: 200),
           ));
 
           await tester.pumpAndSettle();
@@ -137,6 +144,7 @@ void main() {
 
           unawaited(showBottomSheet(
             isCollapsible: defaultBoolTestVariant.currentValue,
+            bottomSheetDuration: const Duration(milliseconds: 200),
           ));
           await tester.pumpAndSettle();
 
@@ -166,7 +174,10 @@ void main() {
         (tester) async {
           await tester.pumpWidget(app);
 
-          unawaited(showBottomSheet(isCollapsible: false));
+          unawaited(showBottomSheet(
+            isCollapsible: false,
+            bottomSheetDuration: const Duration(milliseconds: 200),
+          ));
           await tester.pumpAndSettle();
 
           expect(find.byType(FlexibleBottomSheet), findsOneWidget);
@@ -195,6 +206,7 @@ void main() {
               minHeight: _anchorsTestVariants.currentValue!.minHeight,
               anchors: _anchorsTestVariants.currentValue!.anchors,
               isCollapsible: _anchorsTestVariants.currentValue!.isCollapsible,
+              bottomSheetDuration: const Duration(milliseconds: 200),
             ));
             await tester.pumpAndSettle();
 
@@ -210,12 +222,14 @@ void main() {
           'Drag bottom sheet with anchors should have correct behaviour',
           (tester) async {
             final offset = _dragAnchorsVariants.currentValue!.offset;
-            final expectedResult =
-                _dragAnchorsVariants.currentValue!.expectedResult;
+            final expectedResult = _dragAnchorsVariants.currentValue!.expectedResult;
 
             await tester.pumpWidget(app);
 
-            unawaited(showBottomSheet(anchors: [0.2, 0.5, 0.8]));
+            unawaited(showBottomSheet(
+              anchors: [0.2, 0.5, 0.8],
+              bottomSheetDuration: const Duration(milliseconds: 200),
+            ));
             await tester.pumpAndSettle();
 
             expect(find.byKey(listViewKey), findsOneWidget);
@@ -244,6 +258,7 @@ void main() {
 
             unawaited(showBottomSheet(
               anchors: [0.2, 0.5, 0.8],
+              bottomSheetDuration: const Duration(milliseconds: 200),
             ));
 
             await tester.pumpAndSettle();
