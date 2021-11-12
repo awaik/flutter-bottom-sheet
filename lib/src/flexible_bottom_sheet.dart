@@ -55,6 +55,7 @@ class FlexibleBottomSheet extends StatefulWidget {
   final double? maxHeaderHeight;
   final Decoration? decoration;
   final VoidCallback? onDismiss;
+  final Duration bottomSheetDuration;
 
   FlexibleBottomSheet({
     Key? key,
@@ -72,6 +73,7 @@ class FlexibleBottomSheet extends StatefulWidget {
     this.maxHeaderHeight,
     this.decoration,
     this.onDismiss,
+    this.bottomSheetDuration = const Duration(milliseconds: 500),
   })  : assert(minHeight >= 0 && minHeight <= 1),
         assert(maxHeight > 0 && maxHeight <= 1),
         assert(maxHeight > minHeight),

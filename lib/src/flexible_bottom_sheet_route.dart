@@ -16,8 +16,6 @@ import 'package:bottom_sheet/src/flexible_bottom_sheet.dart';
 import 'package:bottom_sheet/src/widgets/flexible_draggable_scrollable_sheet.dart';
 import 'package:flutter/material.dart';
 
-const Duration _bottomSheetDuration = Duration(milliseconds: 500);
-
 /// Shows a flexible bottom sheet.
 ///
 /// [builder] - content's builder.
@@ -38,6 +36,7 @@ Future<T?> showFlexibleBottomSheet<T>({
   bool useRootNavigator = false,
   bool isModal = true,
   List<double>? anchors,
+  Duration bottomSheetDuration = const Duration(milliseconds: 500),
 }) {
   assert(debugCheckHasMediaQuery(context));
   assert(debugCheckHasMaterialLocalizations(context));
@@ -136,12 +135,13 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
   final double? maxHeaderHeight;
   final Decoration? decoration;
   final ThemeData? theme;
+  final Duration bottomSheetDuration;
 
   @override
   final String? barrierLabel;
 
   @override
-  Duration get transitionDuration => _bottomSheetDuration;
+  Duration get transitionDuration => bottomSheetDuration;
 
   @override
   bool get barrierDismissible => isDismissible;
@@ -168,6 +168,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
     this.minHeaderHeight,
     this.maxHeaderHeight,
     this.decoration,
+    this.bottomSheetDuration = const Duration(milliseconds: 500),
     RouteSettings? settings,
   }) : super(settings: settings);
 
@@ -237,7 +238,7 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
   ) {
     const begin = Offset(0.0, 1.0);
     const end = Offset.zero;
-    final curve = Curves.ease;
+    final curve = Curves.easeIn;
     final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
     return SlideTransition(
