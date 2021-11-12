@@ -238,8 +238,8 @@ class _FlexibleBottomSheetRoute<T> extends PopupRoute<T> {
   ) {
     const begin = Offset(0.0, 1.0);
     const end = Offset.zero;
-    final curve = Curves.easeIn;
-    final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+    final curve = Curves.linear;
+    final tween = Tween(begin: begin, end: end);
 
     return SlideTransition(
       position: animation.drive(tween),
