@@ -45,7 +45,7 @@ Future<T?> showFlexibleBottomSheet<T>({
     _FlexibleBottomSheetRoute<T>(
       theme: Theme.of(context),
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      minHeight: minHeight ?? 0,
+      minHeight: minHeight ?? 0.3,
       initHeight: initHeight ?? 0.5,
       maxHeight: maxHeight ?? 1,
       isCollapsible: isCollapsible,
@@ -103,7 +103,7 @@ Future<T?> showStickyFlexibleBottomSheet<T>({
     _FlexibleBottomSheetRoute<T>(
       theme: Theme.of(context),
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      minHeight: minHeight ?? 0,
+      minHeight: minHeight ?? 0.3,
       initHeight: initHeight ?? 0.5,
       maxHeight: maxHeight ?? 1,
       isCollapsible: isCollapsible,

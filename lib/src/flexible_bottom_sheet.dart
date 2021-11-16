@@ -60,7 +60,7 @@ class FlexibleBottomSheet extends StatefulWidget {
   FlexibleBottomSheet({
     required this.bottomSheetDuration,
     Key? key,
-    this.minHeight = 0,
+    this.minHeight = 0.3,
     this.initHeight = 0.5,
     this.maxHeight = 1,
     this.builder,
@@ -103,7 +103,7 @@ class FlexibleBottomSheet extends StatefulWidget {
           builder: builder,
           headerBuilder: headerBuilder,
           bodyBuilder: bodyBuilder,
-          minHeight: 0,
+          minHeight: 0.3,
           initHeight: initHeight,
           isCollapsible: true,
           isExpand: isExpand,
@@ -437,7 +437,7 @@ class _Content extends StatelessWidget {
               SliverPersistentHeader(
                 pinned: true,
                 delegate: FlexibleBottomSheetHeaderDelegate(
-                  minHeight: minHeaderHeight ?? 0.0,
+                  minHeight: minHeaderHeight ?? 0.3,
                   maxHeight: maxHeaderHeight ?? 1.0,
                   child: headerBuilder!(context, currentExtent),
                 ),

@@ -48,7 +48,7 @@ void main() {
   }) {
     return showFlexibleBottomSheet<void>(
       bottomSheetDuration: bottomSheetDuration,
-      minHeight: minHeight ?? 0,
+      minHeight: minHeight ?? 0.3,
       initHeight: initHeight ?? 0.5,
       maxHeight: maxHeight ?? 0.8,
       context: savedContext,
