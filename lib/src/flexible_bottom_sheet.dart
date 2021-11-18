@@ -60,7 +60,7 @@ class FlexibleBottomSheet extends StatefulWidget {
   FlexibleBottomSheet({
     required this.bottomSheetDuration,
     Key? key,
-    this.minHeight = 0.3,
+    this.minHeight = 0.0,
     this.initHeight = 0.5,
     this.maxHeight = 1,
     this.builder,

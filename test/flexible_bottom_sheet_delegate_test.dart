@@ -19,7 +19,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final delegate = FlexibleBottomSheetHeaderDelegate(
     maxHeight: 1,
-    minHeight: 0.0,
+    minHeight: 0,
     child: Container(),
   );
 
