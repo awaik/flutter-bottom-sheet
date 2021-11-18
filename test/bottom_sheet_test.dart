@@ -371,7 +371,7 @@ final ValueVariant<_AnchorsTestScenario> _anchorsTestVariants =
     _AnchorsTestScenario(
       anchors: [0.2, 0.5, 1],
       maxHeight: 1,
-      minHeight: 0.3,
+      minHeight: 0.0,
       isCollapsible: false,
       matcher: isInstanceOf<AssertionError>(),
     ),

@@ -103,7 +103,7 @@ class FlexibleBottomSheet extends StatefulWidget {
           builder: builder,
           headerBuilder: headerBuilder,
           bodyBuilder: bodyBuilder,
-          minHeight: 0.3,
+          minHeight: 0.0,
           initHeight: initHeight,
           isCollapsible: true,
           isExpand: isExpand,
