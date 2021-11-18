@@ -60,7 +60,7 @@ class FlexibleBottomSheet extends StatefulWidget {
   FlexibleBottomSheet({
     required this.bottomSheetDuration,
     Key? key,
-    this.minHeight = 0.0,
+    this.minHeight = 0,
     this.initHeight = 0.5,
     this.maxHeight = 1,
     this.builder,
@@ -77,7 +77,6 @@ class FlexibleBottomSheet extends StatefulWidget {
   })  : assert(minHeight >= 0 && minHeight <= 1),
         assert(maxHeight > 0 && maxHeight <= 1),
         assert(maxHeight > minHeight),
-        assert(!isCollapsible || minHeight == 0),
         assert(anchors == null || !anchors.any((anchor) => anchor > maxHeight)),
         assert(anchors == null || !anchors.any((anchor) => anchor < minHeight)),
         super(key: key);
